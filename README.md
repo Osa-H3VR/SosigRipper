@@ -1,7 +1,8 @@
-# H3VR.EmptyBepInEx
-Template BepInEx plugin for H3VR. 
+# SosigRipper
+Grab your sausage, whenever you want.
 
-Includes
-- Autobuilding Thunderstore package
-- Stripped publicized H3VR assembly
-- MMHook H3VR assembly
+## Description:
+This mod bypasses all the checks, and allows you to alwyas grab sosigs.
+
+- Want to just rip them apart, done.
+- Maybe you just like breaking necks, no problemo.
