@@ -1,8 +1,7 @@
 using System;
 using BepInEx.Configuration;
-using On.FistVR;
+using FistVR;
 using UnityEngine;
-
 namespace H3VRMod
 {
     public class Hooks
@@ -12,6 +11,8 @@ namespace H3VRMod
         private readonly ConfigEntry<int> _stunDuration;
         private readonly ConfigEntry<bool> _makeHandsMelee;
         private readonly ConfigFile _config;
+        
+        
 
         public Hooks(ConfigEntry<bool> vanillaMode, ConfigEntry<bool> stunOnGrab, ConfigEntry<int> stunDuration,
             ConfigEntry<bool> makeHandsMelee)
@@ -22,7 +23,7 @@ namespace H3VRMod
             _makeHandsMelee = makeHandsMelee;
         }
 
-        private bool HookCanCurrentlyBeHeld(Sosig.orig_CanCurrentlyBeHeld orig, FistVR.Sosig self)
+        private bool HookCanCurrentlyBeHeld(On.FistVR.Sosig.orig_CanCurrentlyBeHeld orig, FistVR.Sosig self)
         {
             if (_vanillaMode.Value)
             {
@@ -47,7 +48,7 @@ namespace H3VRMod
             On.FistVR.SosigLink.Update += OnSosigLinkOnUpdate;
         }
 
-        private void OnSosigLinkOnUpdate(SosigLink.orig_Update orig, FistVR.SosigLink self)
+        private void OnSosigLinkOnUpdate(On.FistVR.SosigLink.orig_Update orig, FistVR.SosigLink self)
         {
             if (self.O.IsHeld)
                 if (_stunOnGrab.Value)

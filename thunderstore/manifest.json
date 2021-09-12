@@ -1,8 +1,8 @@
 {
     "name": "SosigRipper",
-    "version_number": "0.1.1",
+    "version_number": "0.1.2",
     "dependencies": [
-        "nrgill28-HookGenPatcher_H3VR-1.2.3"
+        "nrgill28-Sodalite-1.0.0"
     ],
     "description": "Allows you to go into SosigSlayer™ mode and be able to grab sosigs always.",
     "website_url": "https://github.com/Osa-H3VR/SosigRipper"

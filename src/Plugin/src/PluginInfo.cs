@@ -4,6 +4,6 @@ namespace H3VRMod
 	{
 		internal const string NAME = "SosigRipper";
 		internal const string GUID = "osa.sosigripper";
-		internal const string VERSION = "0.1.1";
+		internal const string VERSION = "0.1.2";
 	}
 }
