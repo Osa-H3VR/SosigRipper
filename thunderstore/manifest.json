@@ -1,9 +1,9 @@
 {
-    "name": "Template Plugin",
+    "name": "SosigRipper",
     "version_number": "0.1.0",
     "dependencies": [
         "nrgill28-HookGenPatcher_H3VR-1.2.3"
     ],
-    "description": "Template plugin for H3VR.",
-    "website_url": "https://github.com/Maiq-The-Dude/H3VR.EmptyBepInEx"
+    "description": "Allows you to go into SosigSlayer™ mode and be able to grab sosigs always.",
+    "website_url": "https://github.com/Osa-H3VR/SosigRipper"
 }
