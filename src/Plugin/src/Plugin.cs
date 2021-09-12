@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 
 namespace H3VRMod
 {
@@ -10,7 +11,11 @@ namespace H3VRMod
 
 		public Plugin()
 		{
-			_hooks = new Hooks();
+			var vanillaMode = Config.Bind("SosigRipper", "vanillaMode", true, "Setting this to false will ignore all sosig settings, you will be able to grab even if sosig has canBeGrabbed=false, he will get stunned always the same time (disregarding StunMultiplier). This will make some sosigs that rely on those trival to kill.");
+			var stunOnGrab = Config.Bind("SosigRipper", "stunOnGrab", true, "Should sosigs get stunned on grab?");
+			var stunDuration = Config.Bind("SosigRipper", "stunDuration", 3000, "How long will the stun last, after letting go. No effect is stunOnGrab:false!");
+			var makeHandsMelee = Config.Bind("SosigRipper", "makeHandsMelee", false, "TODO!");
+			_hooks = new Hooks(vanillaMode, stunOnGrab, stunDuration, makeHandsMelee);
 			_hooks.Hook();
 		}
 
