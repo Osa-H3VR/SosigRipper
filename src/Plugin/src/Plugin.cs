@@ -15,11 +15,12 @@ namespace H3VRMod
 
 		public Plugin()
 		{
+			Logger.LogDebug("Initialised");
 			var vanillaMode = Config.Bind("SosigRipper", "vanillaMode", true, "Setting this to false will ignore all sosig settings, you will be able to grab even if sosig has canBeGrabbed=false, he will get stunned always the same time (disregarding StunMultiplier). This will make some sosigs that rely on those trival to kill.");
 			var stunOnGrab = Config.Bind("SosigRipper", "stunOnGrab", true, "Should sosigs get stunned on grab?");
 			var stunDuration = Config.Bind("SosigRipper", "stunDuration", 3000, "How long will the stun last, after letting go. No effect is stunOnGrab:false!");
 			var makeHandsMelee = Config.Bind("SosigRipper", "makeHandsMelee", false, "TODO!");
-			_hooks = new Hooks(vanillaMode, stunOnGrab, stunDuration, makeHandsMelee);
+			_hooks = new Hooks(vanillaMode, stunOnGrab, stunDuration, makeHandsMelee, Logger);
 			_hooks.Hook();
 			EnableDebugSpheres = true;
 		}
@@ -41,35 +42,35 @@ namespace H3VRMod
         
         private void Update()
         {
-            try
-            {
-                //Hand collider interaction
-                //Disable/enable based on Grip interaction
-                if (LeftHandComp.m_state.Equals(FVRViveHand.HandState.GripInteracting))
-                    LeftCollider.SetActive(false);
-                else if (!LeftCollider.activeSelf)
-                    LeftCollider.SetActive(true);
-
-                if (RightHandComp.m_state.Equals(FVRViveHand.HandState.GripInteracting))
-                    RightCollider.SetActive(false);
-                else if (!RightCollider.activeSelf)
-                    RightCollider.SetActive(true);
-
-                //Show/hide spheres
-                if (LeftCollider.activeSelf && LeftCollider.transform.parent != null && EnableDebugSpheres)
-                    Gizmos.Sphere(GM.CurrentPlayerBody.LeftHand.position, HAND_SIZE, Color.red);
-                if (RightCollider.activeSelf && RightCollider.transform.parent != null && EnableDebugSpheres)
-                    Gizmos.Sphere(GM.CurrentPlayerBody.RightHand.position, HAND_SIZE, Color.blue);
-            } catch (NullReferenceException e)
-            {
-                Debug.Log("---NToolbox caught null reference exception---");
-                Debug.Log("(If you are seeing this, report it to the mod author)");
-                Debug.Log("LeftHandComp: " + LeftHandComp != null ? "not null" : "null");
-                Debug.Log("Actions.LeftCollider: " + LeftCollider != null ? "not null" : "null");
-                Debug.Log("Error: " + e);
-                Debug.Log("Attempting to reset...");
-                ResetHandObjects();
-            }
+            // try
+            // {
+            //     //Hand collider interaction
+            //     //Disable/enable based on Grip interaction
+            //     if (LeftHandComp.m_state.Equals(FVRViveHand.HandState.GripInteracting))
+            //         LeftCollider.SetActive(false);
+            //     else if (!LeftCollider.activeSelf)
+            //         LeftCollider.SetActive(true);
+            //
+            //     if (RightHandComp.m_state.Equals(FVRViveHand.HandState.GripInteracting))
+            //         RightCollider.SetActive(false);
+            //     else if (!RightCollider.activeSelf)
+            //         RightCollider.SetActive(true);
+            //
+            //     //Show/hide spheres
+            //     if (LeftCollider.activeSelf && LeftCollider.transform.parent != null && EnableDebugSpheres)
+            //         Gizmos.Sphere(GM.CurrentPlayerBody.LeftHand.position, HAND_SIZE, Color.red);
+            //     if (RightCollider.activeSelf && RightCollider.transform.parent != null && EnableDebugSpheres)
+            //         Gizmos.Sphere(GM.CurrentPlayerBody.RightHand.position, HAND_SIZE, Color.blue);
+            // } catch (NullReferenceException e)
+            // {
+            //     Debug.Log("---NToolbox caught null reference exception---");
+            //     Debug.Log("(If you are seeing this, report it to the mod author)");
+            //     Debug.Log("LeftHandComp: " + LeftHandComp != null ? "not null" : "null");
+            //     Debug.Log("Actions.LeftCollider: " + LeftCollider != null ? "not null" : "null");
+            //     Debug.Log("Error: " + e);
+            //     Debug.Log("Attempting to reset...");
+            //     ResetHandObjects();
+            // }
         }
         
 
